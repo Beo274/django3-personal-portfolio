@@ -1,0 +1,33 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<h1 class="text-center">My Portfolio</h1>
+
+{% load static %}
+
+<link rel = 'stylesheet' href = '{% static "portfolio/style.css" %}'>
+
+<div class = 'text-center'>
+  <img src = '{% static "portfolio/logo.jpg" %}'>
+</div>
+<h2>Portfolio</h2>
+  <hr>
+  <div class = 'row justify-content-around'>
+      {% for project in projects %}
+      <div class = 'd-flex flex-column mb-5 col-md-4'>
+        <div class = 'card flex-grow-1'>
+          {% if project.url %}
+            <br><a href = '{{ project.url }}' target = "_blank">
+          {%endif%}
+          <img src = '{{ project.image.url }}' width="100%"></a>
+          <div class = 'card-body'>
+            <h2 class = 'card-title'>{{ project.title }}</h2>
+            <p class="card-text">{{ project.description }}</p>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
